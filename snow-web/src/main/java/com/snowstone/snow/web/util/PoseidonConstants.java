@@ -8,6 +8,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.snowstone.commons.kern.Conf;
+
 public class PoseidonConstants {
 	public static final String ANONYMOUS_USER = "anonymousUser";
 
@@ -370,5 +372,11 @@ public class PoseidonConstants {
 	public static final Map<String, String> MAP_GU_SN_PREFIX = new HashMap<String, String>();
 	static {
 		MAP_GU_SN_PREFIX.put(GU_SN_PREFIX, "YLDHQ");
+	}
+	
+	public static void main(String[] args) {
+		
+		System.out.println( Conf.get("common.http.connpool.maxtotal"));
+		
 	}
 }
