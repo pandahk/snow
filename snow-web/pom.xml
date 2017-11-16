@@ -237,7 +237,12 @@
 			<artifactId>pagehelper</artifactId>
 			<version>4.0.2</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>com.snowstone</groupId>
+			<artifactId>commons-kern</artifactId>
+			<version>1.0.1</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>snow-web</finalName>
