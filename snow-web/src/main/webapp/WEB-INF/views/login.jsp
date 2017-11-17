@@ -27,7 +27,7 @@
  
 </head>
 <body style="background:url('${ctx}/static/images/login_bg.jpg') repeat-x scroll center center;">
- <div class="container" style="padding:150px;">
+ <div class="container" style="padding: 150px;width: 700px;">
   <c:url var="loginUrl" value="/login" />
         		<form action="${loginUrl}" method="post" class="form-horizontal">
 		            <c:if test='${authenticationFailureResult != null}'>
@@ -35,12 +35,12 @@
 		                    <p>Invalid user name and password.</p>
 		                </div>
 		            </c:if>
-		            <div class="input-group input-sm">
-		                <label class="input-group-addon" for="username"><i class="fa fa-user"></i></label>
+		            <div class="input-group input-sm ">
+		                <label class="input-group-addon" for="username"><b class="fa fa-user">用户名</b></label>
 		                <input type="text" class="form-control" id="username" name="username">
 		            </div>
 		            <div class="input-group input-sm">
-		                <label class="input-group-addon" for="password"><i class="fa fa-lock"></i></label> 
+		                <label class="input-group-addon" for="password"><b class="fa fa-lock">密&nbsp;&nbsp;&nbsp;码</b></label> 
 		                <input type="password" class="form-control" id="password" name="password">
 		            </div>
             		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
