@@ -21,20 +21,25 @@
 		where id = #{id,jdbcType=INTEGER}
 	</select>
 	<delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
-		delete from snow_user
+		delete from
+		snow_user
 		where id = #{id,jdbcType=INTEGER}
 	</delete>
 	<insert id="insert" parameterType="com.snowstone.snow.web.model.User">
-		insert into snow_user (id, account, password,
+		insert into snow_user (id,
+		account, password,
 		name, sex, orgId, status
 		)
-		values (#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR},
+		values
+		(#{id,jdbcType=INTEGER}, #{account,jdbcType=VARCHAR},
 		#{password,jdbcType=VARCHAR},
-		#{name,jdbcType=VARCHAR}, #{sex,jdbcType=INTEGER}, #{orgId,jdbcType=INTEGER},
+		#{name,jdbcType=VARCHAR},
+		#{sex,jdbcType=INTEGER}, #{orgId,jdbcType=INTEGER},
 		#{status,jdbcType=INTEGER}
 		)
 	</insert>
-	<insert id="insertSelective" parameterType="com.snowstone.snow.web.model.User">
+	<insert id="insertSelective" parameterType="com.snowstone.snow.web.model.User"
+		useGeneratedKeys="true" keyProperty="id">
 		insert into snow_user
 		<trim prefix="(" suffix=")" suffixOverrides=",">
 			<if test="id != null">
@@ -110,11 +115,14 @@
 	<update id="updateByPrimaryKey" parameterType="com.snowstone.snow.web.model.User">
 		update snow_user
 		set account = #{account,jdbcType=VARCHAR},
-		password = #{password,jdbcType=VARCHAR},
+		password =
+		#{password,jdbcType=VARCHAR},
 		name = #{name,jdbcType=VARCHAR},
-		sex = #{sex,jdbcType=INTEGER},
+		sex =
+		#{sex,jdbcType=INTEGER},
 		orgId = #{orgId,jdbcType=INTEGER},
-		status = #{status,jdbcType=INTEGER}
+		status =
+		#{status,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
 	<resultMap type="com.snowstone.snow.web.model.User" id="selectUserMap">
@@ -137,18 +145,24 @@
 	<select id="selectByAccount" parameterType="java.lang.String"
 		resultMap="selectUserMap">
 		select
-		
+
 		snow_user.id,snow_user.account,snow_user.password,snow_user.name,snow_user.sex,
 		snow_user.orgId,snow_user.status,snow_role.role_code,snow_role.id,
 		snow_role.role_name,snow_role.status,snow_role.create_time,snow_role.update_time
-		
+
 		from snow_user ,snow_role,snow_user_role
-		where snow_user.id=snow_user_role.user_id and
+		where
+		snow_user.id=snow_user_role.user_id and
 		snow_role.id=snow_user_role.role_id
-		and snow_user.account = #{account,jdbcType=VARCHAR}
+		and snow_user.account =
+		#{account,jdbcType=VARCHAR}
 	</select>
 
-
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from snow_user
+	</select>
 
 
 
