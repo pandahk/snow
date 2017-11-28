@@ -1,35 +1,72 @@
 package com.snowstone.snow.web.controller;
 
-import java.util.concurrent.Executor;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.snowstone.commons.kern.apiext.thread.ThreadPool;
-import com.snowstone.snow.web.model.User;
-import com.snowstone.snow.web.service.UserService;
+import com.alibaba.fastjson.JSON;
 
 @Controller
 public class HomeController {
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-
-	@Autowired
-	UserService userService;
-
-	@RequestMapping("/11")
-	@ResponseBody
-	public String home() {
 	
-		return "okok!!!";
+	@Autowired
+	private SecurityContextLogoutHandler securityContextLogoutHandle;
+
+	@RequestMapping(value = {"/home","/"})
+	public String homePage(ModelMap model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName = principal instanceof UserDetails ? ((UserDetails) principal)
+				.getUsername() : principal.toString();
+		model.addAttribute("user", userName);
+		return "welcome";
 	}
 
-	@RequestMapping("/login122")
-	public String login() {
+	@RequestMapping(value = "/admin/index" )
+	public String adminPage(ModelMap model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName = principal instanceof UserDetails ? ((UserDetails) principal)
+				.getUsername() : principal.toString();
+		model.addAttribute("user", userName);
+		return "admin/index";
+	}
 
+	
+	
+	@RequestMapping(value = "/login" )
+    public String loginPage() {
+        return "login";
+    }
+
+	@RequestMapping(value = "/logout" )
+	public String logoutPage(HttpServletRequest request,HttpServletResponse response) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+		if (auth != null) {
+			securityContextLogoutHandle.logout(request, response, auth);
+		}
+		return "redirect:/home";
+	}
+
+	@RequestMapping(value = "/accessDenied" )
+	public String accessDeniedPage(ModelMap model) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String userName = principal instanceof UserDetails ? ((UserDetails) principal)
+				.getUsername() : principal.toString();
+		model.addAttribute("user", userName);
+		return "accessDenied";
+	}
+	
+	@RequestMapping(value = "/authenticationFailure" )
+	public String authenticationFailure(HttpServletRequest request){
+		request.setAttribute("authenticationFailureResult", "failure");
 		return "login";
 	}
 }
