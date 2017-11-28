@@ -274,9 +274,10 @@
 				<artifactId>maven-jetty-plugin</artifactId>
 				<version>6.1.22</version>
 				<configuration>
-					<scanIntervalSeconds>10</scanIntervalSeconds>
+					<scanIntervalSeconds>1</scanIntervalSeconds>
 					<useTestClasspath>true</useTestClasspath>
 					<reload>automatic</reload>
+					 <contextXml>${project.basedir}/src/main/resources/jetty-context.xml</contextXml>
 					<webAppConfig>
 						<contextPath>/snow-web</contextPath>
 					</webAppConfig>

@@ -23,23 +23,7 @@ public class HomeController {
 	@RequestMapping("/11")
 	@ResponseBody
 	public String home() {
-		ThreadPool.getInstance().submit(new Runnable() {
-
-			@Override
-			public void run() {
-				userService.read();
-
-			}
-		});
-		ThreadPool.getInstance().submit(new Runnable() {
-
-			@Override
-			public void run() {
-				userService.update();
-
-			}
-		});
-
+	
 		return "okok!!!";
 	}
 
