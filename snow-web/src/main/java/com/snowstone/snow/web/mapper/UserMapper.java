@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.snowstone.snow.web.model.User;
 
 
-@Transactional
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
 
@@ -25,4 +24,6 @@ public interface UserMapper {
     User selectByAccount(String account);
     
     List<User> selectAll();
+    
+    List<User> queryUser(User record);
 }

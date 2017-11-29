@@ -31,4 +31,12 @@ public class UserService {
 		return userMapper.selectByAccount(account);
 	}
 	
+	
+	public  List<User> findAll(){
+		return userMapper.selectAll();
+	}
+	public  List<User> queryUser(User record){
+		return userMapper.queryUser(record);
+	}
+	
 }

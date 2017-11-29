@@ -163,7 +163,30 @@
 		<include refid="Base_Column_List" />
 		from snow_user
 	</select>
-
+	<select id="queryUser" resultMap="BaseResultMap" parameterType="com.snowstone.snow.web.model.User">
+		select
+		<include refid="Base_Column_List" />
+		from snow_user
+		where
+		<if test="account != null">
+			account = #{account,jdbcType=VARCHAR},
+		</if>
+		<if test="password != null">
+			password = #{password,jdbcType=VARCHAR},
+		</if>
+		<if test="name != null">
+			name = #{name,jdbcType=VARCHAR},
+		</if>
+		<if test="sex != null">
+			sex = #{sex,jdbcType=INTEGER},
+		</if>
+		<if test="orgId != null">
+			orgId = #{orgId,jdbcType=INTEGER},
+		</if>
+		<if test="status != null">
+			status = #{status,jdbcType=INTEGER},
+		</if>
+	</select>
 
 
 </mapper>
