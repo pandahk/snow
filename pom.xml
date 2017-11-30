@@ -7,5 +7,8 @@
   <packaging>pom</packaging>
   <modules>
     <module>snow-web</module>
+    <module>snow-api</module>
+    <module>snow-core</module>
+    <module>snow-esb</module>
   </modules>
 </project>

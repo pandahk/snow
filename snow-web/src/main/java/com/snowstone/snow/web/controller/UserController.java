@@ -18,7 +18,7 @@ import com.snowstone.snow.web.util.PageBean;
 public class UserController {
 
 	@Autowired
-	UserService userService;
+	private UserService userService;
 	
 	@RequestMapping("/user")
 	public String userManager(Model model){

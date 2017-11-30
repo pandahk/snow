@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.snowstone.snow.web.mapper.DictionaryItemMapper">
+  <resultMap id="BaseResultMap" type="com.snowstone.snow.web.model.DictionaryItem">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
+    <result column="item_name" jdbcType="VARCHAR" property="itemName" />
+    <result column="item_parent_code" jdbcType="VARCHAR" property="itemParentCode" />
+    <result column="group_code" jdbcType="VARCHAR" property="groupCode" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
+    <result column="resv1" jdbcType="VARCHAR" property="resv1" />
+    <result column="resv2" jdbcType="VARCHAR" property="resv2" />
+    <result column="resv3" jdbcType="VARCHAR" property="resv3" />
+    <result column="resv4" jdbcType="VARCHAR" property="resv4" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, item_code, item_name, item_parent_code, group_code, status, create_time, update_time, 
+    resv1, resv2, resv3, resv4
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from snow_dictionary_item
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from snow_dictionary_item
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+    insert into snow_dictionary_item (id, item_code, item_name, 
+      item_parent_code, group_code, status, 
+      create_time, update_time, resv1, 
+      resv2, resv3, resv4
+      )
+    values (#{id,jdbcType=INTEGER}, #{itemCode,jdbcType=VARCHAR}, #{itemName,jdbcType=VARCHAR}, 
+      #{itemParentCode,jdbcType=VARCHAR}, #{groupCode,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}, #{resv1,jdbcType=VARCHAR}, 
+      #{resv2,jdbcType=VARCHAR}, #{resv3,jdbcType=VARCHAR}, #{resv4,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+    insert into snow_dictionary_item
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="itemCode != null">
+        item_code,
+      </if>
+      <if test="itemName != null">
+        item_name,
+      </if>
+      <if test="itemParentCode != null">
+        item_parent_code,
+      </if>
+      <if test="groupCode != null">
+        group_code,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="resv1 != null">
+        resv1,
+      </if>
+      <if test="resv2 != null">
+        resv2,
+      </if>
+      <if test="resv3 != null">
+        resv3,
+      </if>
+      <if test="resv4 != null">
+        resv4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="itemCode != null">
+        #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemParentCode != null">
+        #{itemParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCode != null">
+        #{groupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resv1 != null">
+        #{resv1,jdbcType=VARCHAR},
+      </if>
+      <if test="resv2 != null">
+        #{resv2,jdbcType=VARCHAR},
+      </if>
+      <if test="resv3 != null">
+        #{resv3,jdbcType=VARCHAR},
+      </if>
+      <if test="resv4 != null">
+        #{resv4,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+    update snow_dictionary_item
+    <set>
+      <if test="itemCode != null">
+        item_code = #{itemCode,jdbcType=VARCHAR},
+      </if>
+      <if test="itemName != null">
+        item_name = #{itemName,jdbcType=VARCHAR},
+      </if>
+      <if test="itemParentCode != null">
+        item_parent_code = #{itemParentCode,jdbcType=VARCHAR},
+      </if>
+      <if test="groupCode != null">
+        group_code = #{groupCode,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updateTime != null">
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="resv1 != null">
+        resv1 = #{resv1,jdbcType=VARCHAR},
+      </if>
+      <if test="resv2 != null">
+        resv2 = #{resv2,jdbcType=VARCHAR},
+      </if>
+      <if test="resv3 != null">
+        resv3 = #{resv3,jdbcType=VARCHAR},
+      </if>
+      <if test="resv4 != null">
+        resv4 = #{resv4,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+    update snow_dictionary_item
+    set item_code = #{itemCode,jdbcType=VARCHAR},
+      item_name = #{itemName,jdbcType=VARCHAR},
+      item_parent_code = #{itemParentCode,jdbcType=VARCHAR},
+      group_code = #{groupCode,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      resv1 = #{resv1,jdbcType=VARCHAR},
+      resv2 = #{resv2,jdbcType=VARCHAR},
+      resv3 = #{resv3,jdbcType=VARCHAR},
+      resv4 = #{resv4,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

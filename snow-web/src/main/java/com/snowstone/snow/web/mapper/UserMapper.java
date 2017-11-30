@@ -21,9 +21,4 @@ public interface UserMapper {
 
     int updateByPrimaryKey(User record);
     
-    User selectByAccount(String account);
-    
-    List<User> selectAll();
-    
-    List<User> queryUser(User record);
 }
