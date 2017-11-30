@@ -1,6 +1,6 @@
-package com.snowstone.snow.web.mapper;
+package com.snowstone.snow.core.mapper;
 
-import com.snowstone.snow.web.model.DictionaryItem;
+import com.snowstone.snow.core.model.DictionaryItem;
 
 public interface DictionaryItemMapper {
     int deleteByPrimaryKey(Integer id);

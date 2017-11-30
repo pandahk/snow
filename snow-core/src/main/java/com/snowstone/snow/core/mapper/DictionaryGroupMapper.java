@@ -1,6 +1,6 @@
-package com.snowstone.snow.web.mapper;
+package com.snowstone.snow.core.mapper;
 
-import com.snowstone.snow.web.model.DictionaryGroup;
+import com.snowstone.snow.core.model.DictionaryGroup;
 
 public interface DictionaryGroupMapper {
     int deleteByPrimaryKey(Integer id);

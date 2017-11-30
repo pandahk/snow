@@ -1,4 +1,4 @@
-package com.snowstone.snow.web.model;
+package com.snowstone.snow.core.model;
 
 import java.util.Date;
 

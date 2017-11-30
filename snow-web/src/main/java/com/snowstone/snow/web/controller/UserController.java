@@ -9,10 +9,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.alibaba.fastjson.JSON;
-import com.github.pagehelper.PageHelper;
-import com.snowstone.snow.web.model.User;
+import com.snowstone.snow.core.model.User;
 import com.snowstone.snow.web.service.UserService;
-import com.snowstone.snow.web.util.PageBean;
 
 @Controller
 public class UserController {

@@ -12,8 +12,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.alibaba.fastjson.JSON;
-import com.snowstone.snow.web.model.Role;
-import com.snowstone.snow.web.model.User;
+import com.snowstone.snow.core.model.Role;
+import com.snowstone.snow.core.model.User;
 
 
 @Service("snowUserDetailsService")

@@ -1,6 +1,6 @@
-package com.snowstone.snow.web.mapper;
+package com.snowstone.snow.core.mapper;
 
-import com.snowstone.snow.web.model.Role;
+import com.snowstone.snow.core.model.Role;
 
 public interface RoleMapper {
     int deleteByPrimaryKey(Integer id);

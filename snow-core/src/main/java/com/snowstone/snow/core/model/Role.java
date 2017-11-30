@@ -1,13 +1,13 @@
-package com.snowstone.snow.web.model;
+package com.snowstone.snow.core.model;
 
 import java.util.Date;
 
-public class DictionaryGroup {
+public class Role {
     private Integer id;
 
-    private String groupCode;
+    private String roleCode;
 
-    private String groupName;
+    private String roleName;
 
     private Integer status;
 
@@ -23,20 +23,20 @@ public class DictionaryGroup {
         this.id = id;
     }
 
-    public String getGroupCode() {
-        return groupCode;
+    public String getRoleCode() {
+        return roleCode;
     }
 
-    public void setGroupCode(String groupCode) {
-        this.groupCode = groupCode == null ? null : groupCode.trim();
+    public void setRoleCode(String roleCode) {
+        this.roleCode = roleCode == null ? null : roleCode.trim();
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getRoleName() {
+        return roleName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName == null ? null : groupName.trim();
+    public void setRoleName(String roleName) {
+        this.roleName = roleName == null ? null : roleName.trim();
     }
 
     public Integer getStatus() {
@@ -62,4 +62,11 @@ public class DictionaryGroup {
     public void setUpdateTime(Date updateTime) {
         this.updateTime = updateTime;
     }
+
+	@Override
+	public String toString() {
+		return "Role [id=" + id + ", roleCode=" + roleCode + ", roleName=" + roleName + ", status=" + status
+				+ ", createTime=" + createTime + ", updateTime=" + updateTime + "]";
+	}
+    
 }
