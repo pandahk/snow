@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snowstone.snow.web.mapper.DictionaryItemMapper">
-  <resultMap id="BaseResultMap" type="com.snowstone.snow.web.model.DictionaryItem">
+<mapper namespace="com.snowstone.snow.core.mapper.DictionaryItemMapper">
+  <resultMap id="BaseResultMap" type="com.snowstone.snow.core.model.DictionaryItem">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="item_code" jdbcType="VARCHAR" property="itemCode" />
     <result column="item_name" jdbcType="VARCHAR" property="itemName" />
@@ -29,7 +29,7 @@
     delete from snow_dictionary_item
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+  <insert id="insert" parameterType="com.snowstone.snow.core.model.DictionaryItem">
     insert into snow_dictionary_item (id, item_code, item_name, 
       item_parent_code, group_code, status, 
       create_time, update_time, resv1, 
@@ -41,7 +41,7 @@
       #{resv2,jdbcType=VARCHAR}, #{resv3,jdbcType=VARCHAR}, #{resv4,jdbcType=VARCHAR}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+  <insert id="insertSelective" parameterType="com.snowstone.snow.core.model.DictionaryItem">
     insert into snow_dictionary_item
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -120,7 +120,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snowstone.snow.core.model.DictionaryItem">
     update snow_dictionary_item
     <set>
       <if test="itemCode != null">
@@ -159,7 +159,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snowstone.snow.web.model.DictionaryItem">
+  <update id="updateByPrimaryKey" parameterType="com.snowstone.snow.core.model.DictionaryItem">
     update snow_dictionary_item
     set item_code = #{itemCode,jdbcType=VARCHAR},
       item_name = #{itemName,jdbcType=VARCHAR},

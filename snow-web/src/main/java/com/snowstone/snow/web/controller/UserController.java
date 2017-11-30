@@ -24,7 +24,6 @@ public class UserController {
 		if (CollectionUtils.isNotEmpty(userList)) {
 			model.addAttribute("userList", userList);
 		}
-		System.out.println(JSON.toJSONString(userList));
 		return "/user/userManager";
 
 	}

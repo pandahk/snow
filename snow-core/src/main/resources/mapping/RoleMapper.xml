@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.snowstone.snow.web.mapper.RoleMapper">
-  <resultMap id="BaseResultMap" type="com.snowstone.snow.web.model.Role">
+<mapper namespace="com.snowstone.snow.core.mapper.RoleMapper">
+  <resultMap id="BaseResultMap" type="com.snowstone.snow.core.model.Role">
     <id column="id" jdbcType="INTEGER" property="id" />
     <result column="role_code" jdbcType="VARCHAR" property="roleCode" />
     <result column="role_name" jdbcType="VARCHAR" property="roleName" />
@@ -22,7 +22,7 @@
     delete from snow_role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.snowstone.snow.web.model.Role">
+  <insert id="insert" parameterType="com.snowstone.snow.core.model.Role">
     insert into snow_role (id, role_code, role_name, 
       status, create_time, update_time
       )
@@ -30,7 +30,7 @@
       #{status,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP}
       )
   </insert>
-  <insert id="insertSelective" parameterType="com.snowstone.snow.web.model.Role">
+  <insert id="insertSelective" parameterType="com.snowstone.snow.core.model.Role">
     insert into snow_role
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
@@ -73,7 +73,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.snowstone.snow.web.model.Role">
+  <update id="updateByPrimaryKeySelective" parameterType="com.snowstone.snow.core.model.Role">
     update snow_role
     <set>
       <if test="roleCode != null">
@@ -94,7 +94,7 @@
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.snowstone.snow.web.model.Role">
+  <update id="updateByPrimaryKey" parameterType="com.snowstone.snow.core.model.Role">
     update snow_role
     set role_code = #{roleCode,jdbcType=VARCHAR},
       role_name = #{roleName,jdbcType=VARCHAR},
