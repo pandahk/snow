@@ -125,7 +125,7 @@
 		#{status,jdbcType=INTEGER}
 		where id = #{id,jdbcType=INTEGER}
 	</update>
-	<resultMap type="com.snowstone.snow.core.model.User" id="selectUserMap">
+	<!--<resultMap type="com.snowstone.snow.core.model.User" id="selectUserMap">
 		<id column="id" property="id" />
 		<result column="account" property="account" />
 		<result column="password" property="password" />
@@ -142,7 +142,7 @@
 			<result column="update_time" jdbcType="TIMESTAMP" property="updateTime" />
 		</collection>
 	</resultMap>
-	<select id="selectByAccount" parameterType="java.lang.String"
+	 <select id="selectByAccount" parameterType="java.lang.String"
 		resultMap="selectUserMap">
 		select
 
@@ -156,7 +156,7 @@
 		snow_role.id=snow_user_role.role_id
 		and snow_user.account =
 		#{account,jdbcType=VARCHAR}
-	</select>
+	</select> 
 
 	<select id="selectAll" resultMap="BaseResultMap">
 		select
@@ -187,6 +187,6 @@
 			status = #{status,jdbcType=INTEGER},
 		</if>
 	</select>
-
+-->
 
 </mapper>

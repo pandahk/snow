@@ -25,7 +25,6 @@ public class SnowUserDetailsService implements UserDetailsService {
 	@Override
 	public UserDetails loadUserByUsername(String account)throws UsernameNotFoundException {
 		User user = userService.findOne(account);
-        System.out.println("User : "+user);
         if(user==null){
             System.out.println("User not found");
             throw new UsernameNotFoundException("Username not found");
@@ -33,7 +32,6 @@ public class SnowUserDetailsService implements UserDetailsService {
         boolean enabled=user.getStatus()==1;
         List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
         for(Role role : user.getRoleList()){
-            System.out.println("role : "+role);
             authorities.add(new SimpleGrantedAuthority("ROLE_"+role.getRoleCode()));
         }
         return new org.springframework.security.core.userdetails.User(user.getAccount(), user.getPassword(), 

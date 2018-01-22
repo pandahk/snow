@@ -25,6 +25,14 @@
 	text-align: center;
 	vertical-align: middle !important;
 }
+
+b {
+	background: #D9EDF7;
+}
+
+.bg {
+	background: #D9EDF7
+}
 </style>
 <script type="text/javascript">
 	$(function() {
@@ -32,9 +40,43 @@
 			$(".p").toggle();
 
 		});
+		$(".h11").click(function() {
+			$(".p11").toggle();
+		});
+		/* $(".p li").click(function() {
+			 $(".p li").each(function(){
+				 $(this).css({"background":"#FFFFFF","font-weight":"normal"});
+				  });
+			$(this).css({"background":"#D9EDF7","font-weight":"bold"});
 
+		}); */
+		
+		
+	
+		
+		
+		
+		
 	});
+	
+	function page(page,rows){
+		/*  $.ajax({
+		       url: "${ctx}/user",
+		       type: "POST",
+		       data: {
+					pageNumber: rows,
+					pageSize: page,
+		       },
+		       success: function(data, status) {
+		    	   
+		       	 }
+		      }); */
+		 
+		 window.location.href="${ctx}/user?rows="+rows+"&page="+page;
+		
+	}
 </script>
+<!-- http://www.phperz.com/article/16/1125/309301.html -->
 </head>
 <body>
 
@@ -45,17 +87,17 @@
 		<div id="content" class="row-fluid">
 			<div class="col-md-2">
 				<!-- <h3 class="h btn btn-default">基础菜单</h3> -->
-				<ul class="nav  nav-pills nav-stacked ">
-					<li class="active "><a href='#' class="h">基础菜单</a>
-						<ul class="p nav">
-							<li class="active"><a href='#'>用户管理</a></li>
-							<li><a href='#'>角色管理</a></li>
+				<ul class="nav  nav-pills nav-stacked " style="text-align: center;">
+					<li class="active"><a href='#' class="h">基础菜单</a>
+						<ul class="p nav nav-pills nav-stacked">
+							<li class="bg"><a href='${ctx}/user'>用户管理</a></li>
+							<li><a href='${ctx}/user'>角色管理</a></li>
 							<li><a href='#'>机构管理</a></li>
 							<li><a href='#'>菜单管理</a></li>
 						</ul></li>
-						<li class="active "><a href='#' class="h">基础菜单</a>
-						<ul class="p nav">
-							<li class="active"><a href='#'>用户管理</a></li>
+					<li class="active "><a href='#' class="h11">资产管理</a>
+						<ul class="p11 nav nav-pills nav-stacked">
+							<li><a href='#'>用户管理</a></li>
 							<li><a href='#'>角色管理</a></li>
 							<li><a href='#'>机构管理</a></li>
 							<li><a href='#'>菜单管理</a></li>
@@ -118,7 +160,7 @@
 								<th>操作</th>
 							</tr>
 						</tbody>
-						<c:forEach items="${userList}" var="user">
+						<c:forEach items="${page.list}" var="user">
 
 							<tr>
 								<td>${user.id}</td>
@@ -139,10 +181,44 @@
 
 
 					</table>
+					<div style="width: 100%; margin: 0 auto; padding-left: 30%;">
+
+						<ul class="pagination pagination-lg ">
+
+							
+							<li><c:if test="${page.pageNum>1 }">
+									<a
+										href="${pageContext.request.contextPath }/user?page=${page.pageNum-1}&rows=10">上一页</a>
+								</c:if></li>
+							<li><a
+								href="${pageContext.request.contextPath }/user?page=${1}&rows=10">首页</a></a></li>
+							<c:forEach begin="1" end="${page.pages }" step="1" var="i">
+								<c:if test="${page.pageNum==i }">
+									<li><a
+										href="${pageContext.request.contextPath }/user?page=${i}&rows=10"><font
+											color="#ff0000">${i}</font></a></li>
+								</c:if>
+								<c:if test="${page.pageNum!=i }">
+									<li><a
+										href="${pageContext.request.contextPath }/user?page=${i}&rows=10">${i}</a></li>
+								</c:if>
+							</c:forEach>
+							<li><c:if test="${page.pageNum< page.pages }">
+									<a
+										href="${pageContext.request.contextPath }/user?page=${page.pageNum+1}&rows=10">下一页</a>
+								</c:if></li>
+							<li><a
+								href="${pageContext.request.contextPath }/user?page=${page.pages}&rows=10">末页</a></li>
+							
+							
+						</ul>
+					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
+
 
 	<!-- 模态框（Modal）add -->
 	<div class="modal fade" id="useAdd" tabindex="-1" role="dialog"

@@ -56,25 +56,26 @@
 		select
 		<include refid="Base_Column_List" />
 		from snow_user
-		where
+		<where>
 		<if test="account != null">
 			account = #{account,jdbcType=VARCHAR},
 		</if>
 		<if test="password != null">
-			password = #{password,jdbcType=VARCHAR},
+			and password = #{password,jdbcType=VARCHAR},
 		</if>
 		<if test="name != null">
-			name = #{name,jdbcType=VARCHAR},
+			and name = #{name,jdbcType=VARCHAR},
 		</if>
 		<if test="sex != null">
-			sex = #{sex,jdbcType=INTEGER},
+			and sex = #{sex,jdbcType=INTEGER},
 		</if>
 		<if test="orgId != null">
-			orgId = #{orgId,jdbcType=INTEGER},
+			and orgId = #{orgId,jdbcType=INTEGER},
 		</if>
 		<if test="status != null">
-			status = #{status,jdbcType=INTEGER},
+			and status = #{status,jdbcType=INTEGER},
 		</if>
+		</where>
 	</select>
 
 
