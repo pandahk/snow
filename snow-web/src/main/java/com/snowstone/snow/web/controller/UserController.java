@@ -2,6 +2,8 @@ package com.snowstone.snow.web.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.apache.commons.collections.CollectionUtils;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +30,10 @@ public class UserController {
 	@SuppressWarnings("all")
 	public String userManager(@RequestParam(defaultValue = "1", value = "page") Integer page,
 			@RequestParam(defaultValue = "10", value = "rows") Integer rows,
-			Model model){
+			Model model,HttpServletRequest req){
+		String account=req.getParameter("account");
 		User user=new User();
-//		user.setAccount(StringUtils.isNotEmpty(account)?account:"");
+		user.setAccount(account);
 		PageHelper.startPage(page, rows);
 		List<User> userList=userService.queryUser(user);
 		

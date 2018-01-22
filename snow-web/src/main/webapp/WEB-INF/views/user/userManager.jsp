@@ -122,26 +122,26 @@ b {
 
 
 				<div class="col-md-9 table-responsive">
-					<form class="form-horizontal" role="form">
+					<form class="form-horizontal" role="form" action="${ctx}/user">
 						<fieldset>
 							<div class="form-group">
 								<label class="col-sm-1 control-label" for="ds_host">账户</label>
 								<div class="col-sm-3">
 									<input class="form-control" id="ds_host" type="text"
-										placeholder="192.168.1.161" />
+										placeholder="192.168.1.161" name="account"/>
 								</div>
 								<label class="col-sm-1 control-label" for="ds_name">组织</label>
 								<!-- <div class="col-sm-3">
                              <input class="form-control" id="ds_name" type="text" placeholder="msh"/>
                           </div> -->
 								<div class="col-sm-3">
-									<select id="disabledSelect" class="form-control">
-										<option>上海福州路</option>
-										<option>上海虹桥路</option>
+									<select id="disabledSelect"  class="form-control">
+										<option value="1">上海福州路</option>
+										<option value="2">上海虹桥路</option>
 									</select>
 								</div>
 								<div class="btn-group col-sm-3">
-									<button type="button" class="col-sm-5 btn btn-primary">查询</button>
+									<button type="submit" class="col-sm-5 btn btn-primary">查询</button>
 									<button type="button" class="col-sm-5 btn btn-primary"
 										data-toggle="modal" data-target="#useAdd">新建</button>
 								</div>
