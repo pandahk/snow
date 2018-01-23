@@ -17,6 +17,9 @@ public class UserService {
 	@Autowired
 	UserExtendMapper userExtendMapper;
 
+	public  void add(User user){
+		userMapper.insertSelective(user);
+	}
 	public  void update(User user){
 		userMapper.updateByPrimaryKeySelective(user);
 	}

@@ -52,29 +52,37 @@ b {
 		}); */
 		
 		
-	
+		$("#uuadd").click(function(){
+			
+			 $.ajax({
+			       url: "${ctx}/userUpdate",
+			       type: "get",
+			       data: {
+			    	   name:$("#name").val(),
+			    	   account:$("#account").val()
+			       },
+			       dataType: "json",
+			       success: function(data) {
+			    	   alert(data);
+			    	   window.location.reload();
+			       	 }
+			       	 /* error:function(msg){
+			       		 alert(msg);
+			       	 } */
+			      }); 
+			
+			
+		});
 		
 		
 		
 		
 	});
 	
-	function page(page,rows){
-		/*  $.ajax({
-		       url: "${ctx}/user",
-		       type: "POST",
-		       data: {
-					pageNumber: rows,
-					pageSize: page,
-		       },
-		       success: function(data, status) {
-		    	   
-		       	 }
-		      }); */
 		 
-		 window.location.href="${ctx}/user?rows="+rows+"&page="+page;
+		 
 		
-	}
+	
 </script>
 <!-- http://www.phperz.com/article/16/1125/309301.html -->
 </head>
@@ -220,7 +228,7 @@ b {
 	</div>
 
 
-	<!-- 模态框（Modal）add -->
+	<!-- 模态框（Modal）add   action="${ctx}/userUpdate"-->
 	<div class="modal fade" id="useAdd" tabindex="-1" role="dialog"
 		aria-labelledby="useAddLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -230,64 +238,55 @@ b {
 						aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">用户新建</h4>
 				</div>
-				<form class="form-horizontal" role="form">
+				<form id="addForm" class="form-horizontal" role="form" >                                                                                                   
 					<div class="modal-body">
 
 
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="ds_host">账户</label>
+								<label class="col-sm-2 control-label" for="account">账户</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="ds_host" type="text"
-										placeholder="192.168.1.161" />
+									<input class="form-control" id="account" type="text"
+										name="account" placeholder="请输入账号" />
 								</div>
-								<label class="col-sm-2 control-label" for="ds_name">用户名</label>
+								<label class="col-sm-2 control-label" for="name">用户名</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="ds_name" type="text"
-										placeholder="msh" />
+									<input class="form-control" id="name" type="text"
+										name="name" placeholder="用户名" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="ds_username">性别</label>
+								<label class="col-sm-2 control-label" for="sex">性别</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="ds_username" type="text"
-										placeholder="root" />
+									<input class="form-control" id="sex" type="text"
+										 placeholder="sex" />
 								</div>
-								<label class="col-sm-2 control-label" for="ds_password">组织</label>
+								<label class="col-sm-2 control-label" for="orgId">组织</label>
 								<!--  <div class="col-sm-4">
                              <input class="form-control" id="ds_password" type="password" placeholder="123456"/>
                           </div> -->
 								<div class="col-sm-4">
 									<select id="disabledSelect" class="form-control">
-										<option>上海福州路</option>
-										<option>上海虹桥路</option>
+										<option value="1">上海福州路</option>
+										<option value="2">上海虹桥路</option>
 									</select>
 								</div>
+								</div>
+								<div class="form-group">
+								<label class="col-sm-2 control-label" for="status">是否有效</label>
+								<div class="col-sm-4">
+									<input class="form-control" id="status" type="text"
+										 placeholder="status" />
+								</div>
+								
 							</div>
 						</fieldset>
-						<!--  <fieldset>
-                         <legend>选择相关表</legend>
-                        <div class="form-group">
-                           <label for="disabledSelect"  class="col-sm-2 control-label">表名</label>
-                           <div class="col-sm-10">
-                              <select id="disabledSelect" class="form-control">
-                                 <option>禁止选择</option>
-                                 <option>禁止选择</option>
-                              </select>
-                           </div>
-                        </div>
-                    </fieldset> -->
-
-
-
-
-
 
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 						</button>
-						<button type="button" class="btn btn-primary">提交更改</button>
+						<button id="uuadd" type="button" class="btn btn-primary">提交更改</button>
 					</div>
 				</form>
 			</div>

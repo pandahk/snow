@@ -14,7 +14,7 @@
 		<intercept-url pattern="/" access="hasRole('ADMIN') or hasRole('USER')" />
         <intercept-url pattern="/home" access="hasRole('ADMIN') or hasRole('USER')" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
-        <access-denied-handler error-page="/accessDenied" />
+        <access-denied-handler error-page="/accessDenied" /> 
         <form-login login-page="/login" 
         			username-parameter="username" 
         			password-parameter="password"
