@@ -30,7 +30,9 @@ public class UserService {
 	public  User findOne(String account){
 		return userExtendMapper.selectByAccount(account);
 	}
-	
+	public  void del(Integer id){
+		userMapper.deleteByPrimaryKey(id);
+	}
 	
 	public  List<User> findAll(){
 		return userExtendMapper.selectAll();

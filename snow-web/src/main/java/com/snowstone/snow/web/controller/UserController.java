@@ -44,23 +44,71 @@ public class UserController {
 
 	}
 
-	
+	/**
+	 * 用户添加
+	 * @param req
+	 * @return
+	 */
 	//@RequestParam String account,@RequestParam  String name
-	@RequestMapping(value="/userUpdate")
+	@RequestMapping(value="/userAdd")
 	@ResponseBody
-	public String userUpdate(/*@RequestBody User user*/ @RequestParam String account,@RequestParam  String name){
-		System.out.println(11);	
+	public String userAdd(HttpServletRequest req
+			/*@RequestBody User user*/ ){
+		String account=req.getParameter("account");
+		String name=req.getParameter("name");
+		String sex=req.getParameter("sex");
+		String status=req.getParameter("status");
+		String orgId=req.getParameter("orgId");
 		User u=new User();
 		u.setAccount(account);
 		u.setName(name);
+		u.setOrgId(Integer.parseInt(orgId));
+		u.setSex(Integer.parseInt(sex));
+		u.setStatus(Integer.parseInt(status));
 		userService.add(u);
 		
 		return "ok";
 		
 	}
-	
-	
-	
+	/**
+	 * 用户修改
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/userUpdate")
+	@ResponseBody
+	public String userUpdate(HttpServletRequest req
+			 ){
+		String id=req.getParameter("pid");
+		String account=req.getParameter("paccount");
+		String name=req.getParameter("pname");
+		String sex=req.getParameter("psex");
+		String status=req.getParameter("pstatus");
+		String orgId=req.getParameter("porgId");
+		User u=new User();
+		u.setId(Integer.parseInt(id));
+		u.setAccount(account);
+		u.setName(name);
+		u.setOrgId(Integer.parseInt(orgId));
+		u.setSex(Integer.parseInt(sex));
+		u.setStatus(Integer.parseInt(status));
+		userService.update(u);
+		
+		return "ok";
+		
+	}
+	/**
+	 * 用户删除
+	 * @param req
+	 * @return
+	 */
+	@RequestMapping(value="/userDel")
+	@ResponseBody
+	public String userDel(HttpServletRequest req){
+		String id=req.getParameter("id");
+		userService.del(Integer.parseInt(id));
+		return "ok";
+	}
 	
 	
 	

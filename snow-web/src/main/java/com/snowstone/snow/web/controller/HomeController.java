@@ -28,7 +28,7 @@ public class HomeController {
 		String userName = principal instanceof UserDetails ? ((UserDetails) principal)
 				.getUsername() : principal.toString();
 		model.addAttribute("user", userName);
-		return "welcome";
+		return "redirect:/user";
 	}
 
 	@RequestMapping(value = "/admin/index" )

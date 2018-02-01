@@ -54,21 +54,85 @@ b {
 		
 		$("#uuadd").click(function(){
 			
+			
+			var account=$("#account").val();
+			if (account==null||account=="") {
+				$("#errorMsg font").html("请输入账户");
+				return false;
+			}
+			var name=$("#name").val();
+			if (name==null||name=="") {
+				$("#errorMsg font").html("请输入用户名");
+				return false;
+			}
+			var sex=$("#sex").val();
+			if (sex==null||sex=="") {
+				$("#errorMsg font").html("请输入性别");
+				return false;
+			}
+			var orgId=$("#orgId").val();
+			if (orgId==null||orgId=="") {
+				$("#errorMsg font").html("请输入组织");
+				return false;
+			}
+			var status=$("#status").val();
+			if (status==null||status=="") {
+				$("#errorMsg font").html("请输入是否有效");
+				return false;
+			}
 			 $.ajax({
-			       url: "${ctx}/userUpdate",
+			       url: "${ctx}/userAdd",
 			       type: "get",
-			       data: {
-			    	   name:$("#name").val(),
-			    	   account:$("#account").val()
-			       },
+			       data:$("#addForm").serialize(),
 			       dataType: "json",
 			       success: function(data) {
 			    	   alert(data);
 			    	   window.location.reload();
 			       	 }
-			       	 /* error:function(msg){
-			       		 alert(msg);
-			       	 } */
+			       	
+			      }); 
+			
+			
+		});
+		
+	$("#uuupdate").click(function(){
+			
+			
+			var account=$("#paccount").val();
+			if (account==null||account=="") {
+				$("#perrorMsg font").html("请输入账户");
+				return false;
+			}
+			var name=$("#pname").val();
+			if (name==null||name=="") {
+				$("#perrorMsg font").html("请输入用户名");
+				return false;
+			}
+			var sex=$("#psex").val();
+			if (sex==null||sex=="") {
+				$("#perrorMsg font").html("请输入性别");
+				return false;
+			}
+			var orgId=$("#porgId").val();
+			if (orgId==null||orgId=="") {
+				$("#perrorMsg font").html("请输入组织");
+				return false;
+			}
+			var status=$("#pstatus").val();
+			if (status==null||status=="") {
+				$("#perrorMsg font").html("请输入是否有效");
+				return false;
+			}
+			 $.ajax({
+			       url: "${ctx}/userUpdate",
+			       type: "get",
+			       data:$("#updateForm").serialize(),
+			       dataType: "json",
+			       success: function(data) {
+			    	   alert(data);
+			    	   window.location.reload();
+			       	 }
+			       	
 			      }); 
 			
 			
@@ -77,9 +141,33 @@ b {
 		
 		
 		
+		
+		
 	});
-	
-		 
+	function userDel(id){
+		
+		$.ajax({
+		       url: "${ctx}/userDel",
+		       type: "get",
+		       data:{id:id},
+		       dataType: "json",
+		       success: function(data) {
+		    	   alert(data);
+		    	   window.location.reload();
+		       	 }
+		       	
+		      });
+		
+	}
+	function userUp(id,account,name,sex,orgId,status){
+		$("#pid").val(id);
+		$("#pname").val(name);
+		$("#paccount").val(account);
+		$("#psex").val(sex);
+		$("#porgId").val(orgId);
+		$("#pstatus").val(status);
+		
+	}
 		 
 		
 	
@@ -175,11 +263,13 @@ b {
 								<td>${user.account}</td>
 								<td>${user.name}</td>
 								<td>${user.sex}</td>
-								<td>${user.sex}</td>
+								<td>${user.orgId}</td>
 								<td>${user.status}</td>
-								<td><button type="button" class="btn btn-default"
+								<td><button type="button" onclick="userUp('${user.id}'
+								,'${user.account}','${user.name}','${user.sex}','${user.orgId}','${user.status}')" 
+								class="btn btn-default"
 										data-toggle="modal" data-target="#myModal">修改</button>
-									<button type="button" class="btn btn-default">删除</button></td>
+									<button id="userDel" onclick="userDel('${user.id}')" type="button" class="btn btn-default">删除</button></td>
 							</tr>
 
 
@@ -259,14 +349,14 @@ b {
 								<label class="col-sm-2 control-label" for="sex">性别</label>
 								<div class="col-sm-4">
 									<input class="form-control" id="sex" type="text"
-										 placeholder="sex" />
+										 name="sex" placeholder="sex" />
 								</div>
 								<label class="col-sm-2 control-label" for="orgId">组织</label>
 								<!--  <div class="col-sm-4">
                              <input class="form-control" id="ds_password" type="password" placeholder="123456"/>
                           </div> -->
 								<div class="col-sm-4">
-									<select id="disabledSelect" class="form-control">
+									<select id="orgId" name="orgId" class="form-control">
 										<option value="1">上海福州路</option>
 										<option value="2">上海虹桥路</option>
 									</select>
@@ -276,7 +366,7 @@ b {
 								<label class="col-sm-2 control-label" for="status">是否有效</label>
 								<div class="col-sm-4">
 									<input class="form-control" id="status" type="text"
-										 placeholder="status" />
+										 name="status" placeholder="status" />
 								</div>
 								
 							</div>
@@ -284,6 +374,8 @@ b {
 
 					</div>
 					<div class="modal-footer">
+					    <label id="errorMsg" class="col-sm-4 control-label" ><font
+											color="#ff0000"></font></label>
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 						</button>
 						<button id="uuadd" type="button" class="btn btn-primary">提交更改</button>
@@ -304,64 +396,57 @@ b {
 						aria-hidden="true">&times;</button>
 					<h4 class="modal-title" id="myModalLabel">用户更新</h4>
 				</div>
-				<form class="form-horizontal" role="form">
+				<form id="updateForm" class="form-horizontal" role="form" >                                                                                                   
 					<div class="modal-body">
-
+					<input class="form-control" id="pid" name="pid" type="hidden" />
 
 						<fieldset>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="ds_host">账户</label>
+								<label class="col-sm-2 control-label" for="paccount">账户</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="ds_host" type="text"
-										placeholder="192.168.1.161" />
+									<input class="form-control" id="paccount" type="text"
+										name="paccount" placeholder="请输入账号" />
 								</div>
-								<label class="col-sm-2 control-label" for="ds_name">用户名</label>
+								<label class="col-sm-2 control-label" for="pname">用户名</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="ds_name" type="text"
-										placeholder="msh" />
+									<input class="form-control" id="pname" type="text"
+										name="pname" placeholder="用户名" />
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-2 control-label" for="ds_username">性别</label>
+								<label class="col-sm-2 control-label" for="psex">性别</label>
 								<div class="col-sm-4">
-									<input class="form-control" id="ds_username" type="text"
-										placeholder="root" />
+									<input class="form-control" id="psex" type="text"
+										 name="psex" placeholder="sex" />
 								</div>
-								<label class="col-sm-2 control-label" for="ds_password">组织</label>
+								<label class="col-sm-2 control-label" for="porgId">组织</label>
 								<!--  <div class="col-sm-4">
                              <input class="form-control" id="ds_password" type="password" placeholder="123456"/>
                           </div> -->
 								<div class="col-sm-4">
-									<select id="disabledSelect" class="form-control">
-										<option>上海福州路</option>
-										<option>上海虹桥路</option>
+									<select id="porgId" name="porgId" class="form-control">
+										<option value="1">上海福州路</option>
+										<option value="2">上海虹桥路</option>
 									</select>
 								</div>
+								</div>
+								<div class="form-group">
+								<label class="col-sm-2 control-label" for="pstatus">是否有效</label>
+								<div class="col-sm-4">
+									<input class="form-control" id="pstatus" type="text"
+										 name="pstatus" placeholder="status" />
+								</div>
+								
 							</div>
 						</fieldset>
-						<!--  <fieldset>
-                         <legend>选择相关表</legend>
-                        <div class="form-group">
-                           <label for="disabledSelect"  class="col-sm-2 control-label">表名</label>
-                           <div class="col-sm-10">
-                              <select id="disabledSelect" class="form-control">
-                                 <option>禁止选择</option>
-                                 <option>禁止选择</option>
-                              </select>
-                           </div>
-                        </div>
-                    </fieldset> -->
-
-
-
-
-
 
 					</div>
 					<div class="modal-footer">
+					    <label id="perrorMsg" class="col-sm-4 control-label" ><font
+											color="#ff0000"></font></label>
 						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
 						</button>
-						<button type="button" class="btn btn-primary">提交更改</button>
+						<button id="uuupdate" type="button" class="btn btn-primary">提交更改</button>
 					</div>
 				</form>
 			</div>
