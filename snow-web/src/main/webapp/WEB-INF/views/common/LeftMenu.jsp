@@ -29,7 +29,9 @@ $(function(){
 		if (ll=='menu') {
 			$(".p li:eq(3)").addClass("bg");
 		}
-		
+		if (ll=='dic') {
+			$(".p li:eq(4)").addClass("bg");
+		}
 	//});
 		$(".h").click(function() {
 			$(".p").toggle();

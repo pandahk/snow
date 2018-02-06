@@ -37,10 +37,7 @@ b {
 </style>
 <script type="text/javascript">
 	$(function() {
-		$(".h").click(function() {
-			$(".p").toggle();
-
-		});
+		
 $("#uuadd").click(function(){
 			
 			

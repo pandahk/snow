@@ -36,13 +36,7 @@ b {
 </style>
 <script type="text/javascript">
 	$(function() {
-		$(".h").click(function() {
-			$(".p").toggle();
-
-		});
-		$(".h11").click(function() {
-			$(".p11").toggle();
-		});
+		
 		/* $(".p li").click(function() {
 			 $(".p li").each(function(){
 				 $(this).css({"background":"#FFFFFF","font-weight":"normal"});
