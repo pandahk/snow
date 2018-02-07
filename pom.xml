@@ -11,4 +11,35 @@
     <module>snow-core</module>
     <module>snow-esb</module>
   </modules>
+  <repositories>
+		<repository>
+			<id>releases</id>
+			<name>releases</name>
+			<url>http://47.104.27.54:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<repository>
+			<id>snapshots</id>
+			<name>snapshots</name>
+			<url>http://47.104.27.54:8081/nexus/content/repositories/snapshots/</url>
+		</repository>
+		<repository>
+			<id>central</id>
+			<name>central</name>
+			<url>http://47.104.27.54:8081/nexus/content/groups/public</url>
+		</repository>
+	</repositories>
+
+
+	<distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>releases</name>
+			<url>http://47.104.27.54:8081/nexus/content/repositories/releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>snapshots</name>
+			<url>http://47.104.27.54:8081/nexus/content/repositories/snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 </project>

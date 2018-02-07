@@ -9,9 +9,11 @@
     
     <beans:bean id="securityContextLogoutHandle" 
     	class="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
-	
 	<http auto-config="true" use-expressions="true">
-		<intercept-url pattern="/" access="hasRole('ADMIN') or hasRole('USER')" />
+		<intercept-url pattern="/user" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/role" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/org" access="hasRole('ADMIN')" />
+		<intercept-url pattern="/dic" access="hasRole('ADMIN')" /> 
         <intercept-url pattern="/home" access="hasRole('ADMIN') or hasRole('USER')" />
         <intercept-url pattern="/admin/**" access="hasRole('ADMIN')" />
         <access-denied-handler error-page="/accessDenied" /> 

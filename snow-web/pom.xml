@@ -17,7 +17,8 @@
 			<id>public</id>
 			<name>jboss</name>
 			<!-- <url>http://maven.aliyun.com/nexus/content/groups/public/</url> -->
-			<url>https://repository.jboss.org/nexus/content/groups/public/</url>
+			<!-- <url>https://repository.jboss.org/nexus/content/groups/public/</url> -->
+			<url>http://47.104.27.54:8081/nexus/content/groups/public</url>
 		</repository>
 	</repositories>
 	<properties>
